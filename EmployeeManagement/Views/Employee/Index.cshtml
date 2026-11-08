@@ -3,6 +3,7 @@
 <table class="table">
     <thead class=" table-dark">
         <tr>
+            <th scope="col">Id</th>
             <th scope="col">FirstName</th>
             <th scope="col">LastName</th>
             <th scope="col">Address</th>
@@ -16,6 +17,7 @@
         {
             
             <tr>
+                <td><a href="/employee/detail?id=@employee.Id">@employee.Id</a></td>
                 <td>@employee.FirstName</td>
                 <td>@employee.SurName</td>
                 <td>@employee.Gender</td>

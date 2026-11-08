@@ -1,0 +1,16 @@
+@model Person;
+<div>
+    <h2>Employee Details <a style="text-decoration: none;" href="/employee">Go Back</a></h2>
+    
+</div>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">Id:@Model.Id</li>
+    <li class="list-group-item">FirstName:@Model.FirstName</li>
+    <li class="list-group-item">LastName:@Model.SurName</li>
+    <li class="list-group-item">Address:@Model.Address</li>
+    <li class="list-group-item">Gender:@Model.Gender</li>
+    @* <li class="list-group-item">Salary:@Model.Salary</li> *@
+    <span class="badge text-bg-primary rounded-pill">@Model.Salary</span>
+
+</ul>
+

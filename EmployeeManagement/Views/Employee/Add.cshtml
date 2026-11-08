@@ -1,0 +1,77 @@
+@* @model Person
+
+<h2>Add New Employee</h2>
+<hr>
+
+<form asp-controller="Employee" asp-action="Add" method="post">
+
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label"></label>
+        <span asp-validation-for="FirstName"></span>
+
+        <input type="text" class="form-control" asp-for="FirstName">
+    </div>
+    <div class="mb-3">
+        <label asp-for="SurName" class="form-label"></label>
+        <span asp-validation-for="SurName"></span>
+        <input type="text" class="form-control" asp-for="SurName">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Address" class="form-label">Address</label>
+        <textarea class="form-control" asp-for="Address"></textarea>
+        <div class="mb-3">
+            <label asp-for="Gender" class="form-label"></label>
+            <input type="text" class="form-control" asp-for="Gender">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Salary" class="form-label"></label>
+            <input type="number" class="form-control" asp-for="Salary">
+        </div>
+         
+
+        <button type="submit" class="btn btn-primary">Add Employee</button>
+    </form> *@
+
+@model Person
+
+<h2>Add New Employee</h2>
+<hr>
+
+<form asp-controller="Employee" asp-action="Add" method="post">
+
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="FirstName">
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SurName" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="SurName">
+        <span asp-validation-for="SurName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <textarea class="form-control" asp-for="Address"></textarea>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Gender" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Gender">
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Salary" class="form-label"></label>
+        <input type="number" class="form-control" asp-for="Salary">
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Employee</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
