@@ -4,6 +4,7 @@ namespace EmployeeManagement.Data
 {
     public class EmsContext : DbContext
     {
+        public EmsContext() { }
         public EmsContext(DbContextOptions<EmsContext> options) : base(options)
         {
         }

@@ -9,6 +9,8 @@
             <th scope="col">Address</th>
             <th scope="col">Xender</th>
             <th scope="col">Salary</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
 
         </tr>
     </thead>
@@ -20,12 +22,15 @@
                 <td><a href="/employee/detail?id=@employee.Id">@employee.Id</a></td>
                 <td>@employee.FirstName</td>
                 <td>@employee.SurName</td>
-                <td>@employee.Gender</td>
                 <td>@employee.Address</td>
+                <td>@employee.Gender</td>
                 <td>@employee.Salary</td>
-            </tr>
-        }
+                <td><a class="btn btn-outline-primary" href="/employee/Update?id=@employee.Id">Edit</a></td>
+                <td><a class="btn" href="/employee/Delete?id=@employee.Id"><img height="25" width="25"
+                                                                                    src="https://cdn-icons-png.magnific.com/512/8771/8771294.png" alt=""></a></td>
+                </tr>
+            }
         
 
-    </tbody>
-</table>
+        </tbody>
+    </table>

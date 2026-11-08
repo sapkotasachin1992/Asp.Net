@@ -34,6 +34,11 @@
 
 @model Person
 
+@{
+    ViewData["TitlePhrase"] = "Add Employee";
+    string[] genders = { "male", "female", "others" };
+}
+
 <h2>Add New Employee</h2>
 <hr>
 
@@ -59,7 +64,13 @@
 
     <div class="mb-3">
         <label asp-for="Gender" class="form-label"></label>
-        <input type="text" class="form-control" asp-for="Gender">
+        @foreach (string gender in genders)
+        {
+            <input id="@gender" type="radio" asp-for="Gender" value="@gender.ToUpper()[0]" />
+            
+
+            
+        }
         <span asp-validation-for="Gender" class="text-danger"></span>
     </div>
 

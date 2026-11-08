@@ -6,6 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 public class EmployeeController : Controller
 {
 
+    private EmsContext db;
+
+    public EmployeeController(EmsContext _db)
+    {
+        db = _db;
+    }
+
     // public ActionResult<string> Index()
     public IActionResult Index() //you can use IActionResult  and not need to provide return type. Actually ActionResult inherit class IActionResult you can see implementation
     {
@@ -15,7 +22,6 @@ public class EmployeeController : Controller
         // return "I am from employee index"; -->This will normally return this string
 
         // var employees = Person.GetEmployees();
-        var db = new EmsContext();
         var employees = db.Employees.ToList();
         return View(employees); // --> View is also a built in class. Now this controller starts looking same name ie:Employee folder,inside that index file  inside Views folder
     }
@@ -23,10 +29,11 @@ public class EmployeeController : Controller
     // public IActionResult Detail(string firstName) -->firstName is query passed from url .
     public IActionResult Detail([FromQuery] int id)
     {
-        var employees = Person.GetEmployees();
+        // var employees = Person.GetEmployees();
         // var employee = employees.Where(x => x.FirstName == firstName).First();
-        var employee = employees.FirstOrDefault(x => x.Id == id);//this is more efficient
+        // var employee = employees.FirstOrDefault(x => x.Id == id);//this is more efficient
 
+        var employee = db.Employees.Find(id);//returns only one employee
 
         return View(employee);
     }
@@ -53,7 +60,7 @@ public class EmployeeController : Controller
 
 
     [HttpPost]
-    public IActionResult Add([FromForm] Person person)
+    public IActionResult Add(Person person)
     {
         if (!ModelState.IsValid)
         {
@@ -63,8 +70,42 @@ public class EmployeeController : Controller
         }
 
         // Save employee record here
+        db.Employees.Add(person);//for now the data is saved into only erm core .
+        db.SaveChanges();//now the data will be saved in squli db
+        // return Content("Record Saved Successfully!");
+        return RedirectToAction(nameof(Index));//we can dirctly write Index in string version but if we change the controller name later here will also we will get error sign so that we can change or update here too
+    }
 
-        return Content("Record Saved Successfully!");
+    [HttpGet]
+    public IActionResult Update(int id)
+    {
+        var employee = db.Employees.Find(id);
+        return View(employee);
+    }
+    [HttpPost]
+    public IActionResult Update(Person person)
+    {
+        db.Employees.Attach(person);
+        db.Employees.Update(person);
+        db.SaveChanges();
+
+        return RedirectToAction(nameof(Index));
+
+    }
+    [HttpGet]
+    public IActionResult Delete(int id)
+    {
+        var employee = db.Employees.Find(id);
+        return View(employee);
+    }
+    [HttpPost]
+    public IActionResult Delete(Person person)
+    {
+        db.Employees.Attach(person);
+        db.Employees.Remove(person);
+        db.SaveChanges();
+        return RedirectToAction(nameof(Index));
+
     }
 }
 
